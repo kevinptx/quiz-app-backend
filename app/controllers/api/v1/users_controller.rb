@@ -4,6 +4,12 @@ class Api::V1::UsersController < ApplicationController
     render json: @users
   end
 
+  def authenticate
+    @user = User.find_or_create_by(user_params)
+  
+    render json: @user, status: :accepted
+  end
+
   def update
     @user.update(user_params)
     if @user.save
