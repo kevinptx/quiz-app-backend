@@ -5,6 +5,12 @@ class Api::V1::AnsweredQuestionsController < ApplicationController
     render json: @answeredquestions
   end
 
+  def create
+    @answeredquestion = AnsweredQuestion.create(answeredquestion_params)
+
+    render json: @answeredquestion, status: :accepted
+  end
+
   def update
     @answeredquestion.update(answeredquestion_params)
     if @answeredquestion.save
@@ -17,7 +23,7 @@ class Api::V1::AnsweredQuestionsController < ApplicationController
   private
 
   def answeredquestion_params
-    params.permit(:name)
+    params.permit(:name, :user_id, :question_id, :correct_answer)
   end
 
   def find_answeredquestion
