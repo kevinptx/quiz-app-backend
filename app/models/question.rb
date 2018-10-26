@@ -4,4 +4,4 @@ class Question < ApplicationRecord
   has_many :users, through: :answered_questions
 end
 
-# test comment
+
